@@ -1,0 +1,18 @@
+name: crash
+version: 0.1.0
+
+authors:
+  - Michael Pirogov <vbnet.ru@gmail.com>
+
+targets:
+  crash:
+    main: src/crash.cr
+
+crystal: 0.36.1
+
+license: MIT
+dependencies:
+  redis:
+    github: stefanwille/crystal-redis
+  validator:
+      github: nicolab/crystal-validator
