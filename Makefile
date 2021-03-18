@@ -1,9 +1,11 @@
-all: shards build strip
+all: shards prebuild build-static strip
 
 shards:
 	shards install --production
 shards-devel:
 	shards install
+prebuild:
+	mkdir bin
 build:
 	crystal build --release --no-debug -s -p -t src/crash.cr -o bin/crash
 build-static:
