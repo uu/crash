@@ -1,6 +1,6 @@
 # crash
 
-**C**rystal **R**emote **A**ny **S**ell **H**elper
+**C**rystal **R**emote **A**ny **S**hell **H**elper
 
 ## Installation
 
