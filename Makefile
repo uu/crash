@@ -9,7 +9,6 @@ prebuild:
 build:
 	crystal build --release --no-debug -s -p -t src/crash.cr -o bin/crash
 build-static:
-	apk add openssl-libs-static
 	crystal build --release --static --no-debug -s -p -t src/crash.cr -o bin/crash
 strip:
 	strip bin/crash
