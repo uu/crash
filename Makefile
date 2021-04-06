@@ -6,7 +6,7 @@ shards-devel:
 	shards install
 prebuild:
 	mkdir -p bin
-build:
+build: prebuild
 	crystal build --release --no-debug -s -p -t src/crash.cr -o bin/crash
 build-static:
 	crystal build --release --static --no-debug -s -p -t src/crash.cr -o bin/crash

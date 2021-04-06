@@ -22,7 +22,7 @@ module Crash
       command = options.commands.command
       hosts = options.commands.hosts
       server = Server.new(options)
-      
+
       server.publish_to(topic, hosts, command)
     end
   end

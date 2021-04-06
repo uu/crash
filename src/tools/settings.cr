@@ -19,6 +19,7 @@ module Crash
   class Commands
     property hosts = "" # limit by hostname
     property command = Array(String).new
+    property timeout = "120"
   end
 
   class Options
@@ -32,17 +33,21 @@ module Crash
       @commands = Commands.new
 
       OptionParser.parse do |p|
-        p.banner = "crash [-d] [-h] [-v] [-l host1,host2] [-c /etc/crash.ini] command"
+        p.banner = "crash [-d] [-h] [-v] [-l host1,host2] [-c /etc/crash.ini] [-t 120] command"
 
         p.on("-c /etc/crash.ini", "--config=/etc/crash.ini", "Main config") do |config|
           @settings.config_path = config
+        end
+
+        p.on("-t 120", "--timeout=120", "Timeout for command callback") do |timeout|
+          @commands.timeout = timeout
         end
 
         p.on("-l hosts", "--limit hosts", "Limit command only to hosts.") do |hosts|
           @commands.hosts = hosts
         end
 
-        p.on("-d", "If set, debug messsages will be shown.") do
+        p.on("-d", "If set, debug messages will be shown.") do
           @settings.debug = true
         end
 
@@ -64,13 +69,16 @@ module Crash
           # this is where the command live ¯\_(ツ)_/¯
           @commands.command = args
         end
-    
+
       end rescue abort "Invalid arguments, see --help."
       parse_config(@settings.config_path)
     end
 
-    private def parse_config(config)
-      parsed = INI.parse(File.read(config))
+    private def parse_config(config_path : String)
+      abort "Config does not exists: #{config_path}" unless File.exists?(config_path)
+      abort "Config is empty: #{config_path}" if File.empty?(config_path)
+      abort "Config not readable: #{config_path}" unless File.readable?(config_path)
+      parsed = INI.parse(File.read(config_path))
       begin
         server = parsed["redis"]["server"]
         port = parsed["redis"]["port"]

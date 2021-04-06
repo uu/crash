@@ -11,7 +11,7 @@
 
 Update `/etc/crash.ini` with your redis credits.
 
-You'll need one redis server available for all the clients.
+You'll need one redis server (v6.2+) available for all the clients.
 
 ### Client probe
 
