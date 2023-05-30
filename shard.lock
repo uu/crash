@@ -2,7 +2,7 @@ version: 2.0
 shards:
   pool:
     git: https://github.com/ysbaddaden/pool.git
-    version: 0.3.0
+    version: 0.2.4
 
   prop:
     git: https://github.com/nicolab/crystal-prop.git
@@ -10,7 +10,7 @@ shards:
 
   redis:
     git: https://github.com/stefanwille/crystal-redis.git
-    version: 2.8.3
+    version: 2.9.1
 
   validator:
     git: https://github.com/nicolab/crystal-validator.git
